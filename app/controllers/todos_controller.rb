@@ -1,5 +1,5 @@
 class TodosController < ApplicationController
-  before_action :set_todo, only: [:show, :update, :destroy]
+  before_action :set_todo, only: [:update, :destroy]
 
   # GET /todos
   def index
@@ -33,19 +33,28 @@ class TodosController < ApplicationController
     end
   end
 
+  def sort
+    @todos = todos.order( params[:sortByTitle] + " " + params[:sortByAsc] )
+
+    if todos
+      render json: todos, status: 200
+    else
+      head(:bad_request)
+    end
+  end
+
   # DELETE /todos/1
   def destroy
     @todo.destroy
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_todo
       @todo = Todo.find(params[:id])
     end
 
     # Only allow a trusted parameter "white list" through.
     def todo_params
-      params.require(:todo).permit(:id, :completed, :title, :description, :priority, :user_id)
+      params.require(:todo).permit(:id, :completed, :title, :description, :priority, :due_date, :user_id)
     end
 end

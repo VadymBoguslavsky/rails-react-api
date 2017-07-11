@@ -1,6 +1,6 @@
 class User < ApplicationRecord
   before_create :confirmation_token
-  has_many :tasks#, dependent: :destroy
+  has_many :todos
 
   validates :last_name, presence: true
   validates :first_name, presence: true
