@@ -1,19 +1,16 @@
 class TodosController < ApplicationController
   before_action :set_todo, only: [:update, :destroy]
 
-  # GET /todos
   def index
-    @todos = current_user.todos.all
+    @todos = current_user.todos.order(priority: :desc)
 
     render json: @todos
   end
 
-  # GET /todos/1
   def show
     render json: @todo
   end
 
-  # POST /todos
   def create
     @todo = Todo.new(todo_params)
 
@@ -24,7 +21,6 @@ class TodosController < ApplicationController
     end
   end
 
-  # PATCH/PUT /todos/1
   def update
     if @todo.update(todo_params)
       render json: @todo
@@ -34,7 +30,7 @@ class TodosController < ApplicationController
   end
 
   def sort
-    @todos = todos.order( params[:sortByTitle] + " " + params[:sortByAsc] )
+    todos = current_user.todos.order( params[:sortByTitle] + " " + params[:sortByAsc] )
 
     if todos
       render json: todos, status: 200
@@ -43,7 +39,6 @@ class TodosController < ApplicationController
     end
   end
 
-  # DELETE /todos/1
   def destroy
     @todo.destroy
   end

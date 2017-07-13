@@ -1,9 +1,15 @@
 Rails.application.routes.draw do
-  resources :todos
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  resources :todos do
+    member do
+      get :completed
+    end
+    collection do
+      post :sort
+    end
+  end
 
 
-    resources :users do
+  resources :users do
     member do
       get :confirm_email
     end
