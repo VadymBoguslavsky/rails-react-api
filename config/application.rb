@@ -18,7 +18,7 @@ Bundler.require(*Rails.groups)
 
 module Rails5ReactReduxTodo
   class Application < Rails::Application
-    config.api_only = true
+    config.api_only = false
 
     config.middleware.insert_before 0, Rack::Cors do
       allow do
@@ -37,7 +37,7 @@ module Rails5ReactReduxTodo
       port:                 587,
       domain:               'gmail.com',
       user_name:            'ascherit999@gmail.com',
-      password:             'lilikyky92VB',
+      password:             'lilikyky171192VB',
       authentication:       :plain,
       enable_starttls_auto: true
     }
