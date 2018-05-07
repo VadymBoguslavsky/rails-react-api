@@ -37,7 +37,7 @@ module Rails5ReactReduxTodo
       port:                 587,
       domain:               'gmail.com',
       user_name:            'ascherit999@gmail.com',
-      password:             'lilikyky171192VB',
+      password:             'lilikyky921117VB',
       authentication:       :plain,
       enable_starttls_auto: true
     }
